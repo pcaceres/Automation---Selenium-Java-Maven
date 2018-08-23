@@ -1,0 +1,34 @@
+package automation.java_selenium_maven;
+
+import navigations.Web_Navigation;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+	
+//	class webpage extends Web_Navigation {
+	class webpage {
+		Web_Navigation nav = new Web_Navigation();
+	
+		@BeforeEach
+		public void setup() {
+			nav.home_page();
+		}
+		
+	/*	@Test
+		public void user_login() {
+			navigate_user_login();
+		}
+	*/
+		@Test
+		public void Kindle() {
+			nav.navigate_kindle();
+		}
+		
+		
+		@AfterEach
+		public void teardown() {
+			//driver.close();
+		}
+
+}

@@ -1,0 +1,28 @@
+package automation.java_selenium_maven;
+
+import navigations.Web_Navigation;
+
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.*;
+
+
+class webpage extends Web_Navigation {
+
+	public static WebDriver driver;
+	public static Actions action;
+	public static WebElement menuSignin;
+
+
+	@Test
+	public void user_login() {
+		
+
+		home_page();
+		navigate_user_login();
+		
+	}
+
+
+}

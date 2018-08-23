@@ -1,0 +1,26 @@
+package automation.java_selenium_maven;
+
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+class webpage {
+
+	public static WebDriver driver = new ChromeDriver();
+//	public static String path = "C:\\WebDrivers";
+	
+	@Test
+	void open_page() {
+
+		System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver.exe");
+	
+		try {
+			driver.get("https://amazon.com.au");
+		}
+		
+		catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+}

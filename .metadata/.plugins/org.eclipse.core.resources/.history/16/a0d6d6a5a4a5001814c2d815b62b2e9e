@@ -1,0 +1,44 @@
+package automation.java_selenium_maven;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+
+//import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.openqa.selenium.support.*;
+
+
+class webpage {
+
+	public static WebDriver driver;
+//	WebDriverWait wait; 
+	public static Actions action;
+	
+	@Test
+	void open_page() {
+
+		System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver.exe");
+		driver = new ChromeDriver();
+		action = new Actions(driver);
+		
+		try {
+			driver.get("https://amazon.com.au");
+			WebElement menuSignin = driver.findElement(By.id("nav-link-yourAccount"));
+			assertTrue(menuSignin.isDisplayed());
+			
+			action.moveToElement(menuSignin).build().perform();
+			WebElement linkSignin = driver.findElement(By.className("nav-action-inner"));
+			assertTrue(linkSignin.isDisplayed());
+		}
+		
+		catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+}

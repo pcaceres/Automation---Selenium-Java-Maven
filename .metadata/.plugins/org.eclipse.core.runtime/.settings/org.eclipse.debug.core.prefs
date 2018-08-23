@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+org.eclipse.debug.core.PREF_BREAKPOINT_MANAGER_ENABLED_STATE=true
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<watchExpressions>\r\n    <expression enabled\="true" text\="driver.getTitle()"/>\r\n    <expression enabled\="true" text\="assertEquals(homepage_title,&quot;Amazon.com.au\: Shop online for Electronics, Apparel, Toys, Books, DVDs &amp; more&quot;);"/>\r\n    <expression enabled\="true" text\="smnuEKindle"/>\r\n</watchExpressions>\r\n

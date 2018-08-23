@@ -1,0 +1,73 @@
+package automation.java_selenium_maven;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+
+import java.util.concurrent.TimeUnit;
+
+//import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.openqa.selenium.JavascriptExecutor;
+//import org.openqa.selenium.support.*;
+
+
+class webpage {
+
+	public static WebDriver driver;
+//	WebDriverWait wait; 
+	public static Actions action;
+	public WebElement menuSignin;
+//	public WebDriverWait wait;
+//	public JavascriptExecutor js;
+
+	@Test
+	void user_login() {
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver.exe");
+		driver = new ChromeDriver();
+		action = new Actions(driver);
+		
+		home_page();
+		navigate_user_login();
+	}
+	
+	public void home_page() {
+		
+		try {
+			driver.get("https://amazon.com.au");
+			menuSignin = driver.findElement(By.id("nav-link-yourAccount"));
+			assertTrue(menuSignin.isDisplayed());
+						
+			return;
+		}
+		
+		catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public void navigate_user_login() {
+		try {
+			action.moveToElement(menuSignin).build().perform();
+			WebElement linkSignin = driver.findElement(By.className("nav-action-inner"));
+			assertTrue(linkSignin.isDisplayed());
+			
+			linkSignin.click();
+			
+			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);	
+			WebElement txtboxEmail = driver.findElement(By.id("ap_email"));
+			assertTrue(txtboxEmail.isDisplayed());
+
+			return;
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+}

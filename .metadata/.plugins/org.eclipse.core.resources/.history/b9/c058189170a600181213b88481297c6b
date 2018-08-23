@@ -1,0 +1,99 @@
+package navigations;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Web_Navigation {
+	
+	public static WebDriver driver;
+	public static Actions action;
+	
+	
+	public void home_page() {
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver.exe");
+		driver = new ChromeDriver();
+		action = new Actions(driver);
+		
+		WebElement btn_HomeSearch;
+		
+		try {
+			driver.get("https://amazon.com.au");
+			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);	
+
+			btn_HomeSearch = driver.findElement(By.id("twotabsearchtextbox"));
+			assertTrue(btn_HomeSearch.isDisplayed());
+						
+			return;
+		}
+		
+		catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+/*
+	public void navigate_user_login() {
+		
+		WebElement menuSignin = driver.findElement(By.id("nav-link-yourAccount"));
+		
+		try {
+			action.moveToElement(menuSignin).build().perform();
+			WebElement linkSignin = driver.findElement(By.className("nav-action-inner"));
+			assertTrue(linkSignin.isDisplayed());
+			
+			linkSignin.click();
+			
+			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);	
+			WebElement txtboxEmail = driver.findElement(By.id("ap_email"));
+			assertTrue(txtboxEmail.isDisplayed());
+
+			return;
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+*/	
+	public void navigate_kindle() {
+		Boolean submenuKindleDisplay = false;
+		
+		WebElement menuShopAll = driver.findElement(By.id("nav-link-shopall"));
+		action.moveToElement(menuShopAll).build().perform();
+
+		WebElement smnuKindleEReaderBooks = driver.findElement(By.xpath("//span[@class='nav-text' and contains(text(),'Kindle E-readers & Books')]"));
+		//assertTrue(smnuKindleEReaderBooks.isDisplayed())
+		submenuKindleDisplay = smnuKindleEReaderBooks.isDisplayed();
+		if (submenuKindleDisplay == true) {
+			WebElement smnuEKindle = driver.findElement(By.xpath("//span[@class='nav-subtext' and contains(text(),'All book. No glare. Zero distractions.')]"));
+			
+			action.moveToElement(smnuKindleEReaderBooks).build().perform();
+			action.moveToElement(smnuEKindle).build().perform();
+			action.moveToElement(smnuEKindle).click();
+		
+			
+			//assertTrue(smnuEKindle.isDisplayed());
+			
+
+			//			action.moveToElement(smnuEKindle).click();
+			//smnuEKindle.click();
+			
+			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);	
+			
+			String pageTitle = driver.getTitle();
+			assertEquals(pageTitle, "Kindle E-reader – Amazon Official Site");
+		}
+		
+		
+	}
+	
+
+}
